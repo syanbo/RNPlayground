@@ -1,0 +1,42 @@
+{
+  "name": "RNPlayground",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "precommit": "pretty-quick --staged",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "run-ios": "react-native run-ios",
+    "test": "jest"
+  },
+  "dependencies": {
+    "mobx": "^4.1.1",
+    "mobx-react": "^5.0.0",
+    "mobx-state-tree": "^2.0.2",
+    "react": "^16.3.0-alpha.1",
+    "react-native": "0.54.4",
+    "react-navigation": "^1.5.9"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "22.4.3",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-react-native": "4.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-react-native-prettier": "^1.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "jest": "22.4.3",
+    "lint-staged": "^7.0.2",
+    "mobx-devtools-mst": "^0.9.14",
+    "prettier": "^1.11.1",
+    "pretty-quick": "^1.4.1",
+    "react-test-renderer": "^16.3.0-alpha.1"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
