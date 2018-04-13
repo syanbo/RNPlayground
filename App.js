@@ -16,13 +16,12 @@ export default class App extends Component<Props> {
   render() {
     return (
       <Provider {...stores}>
-        <Home {...stores} />
+        <Home />
       </Provider>
     );
   }
 }
 
-// @observer
 const Home = observer(props => {
   console.log(props);
   return (
