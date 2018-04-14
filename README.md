@@ -1,5 +1,9 @@
 # React-Native
 
+* [代码规范](#代码规范)
+* [项目规范](#项目规范)
+* [调试工具](#调试工具)
+
 ## 代码规范
 
 * eslint
@@ -20,7 +24,9 @@
 
 [git-flow 的工作流程](https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow)
 
-## 调试[react-native-debugger](https://github.com/jhen0409/react-native-debugger)
+## 调试工具
+
+* [react-native-debugger](https://github.com/jhen0409/react-native-debugger)
 
 * 【brew 安装】
 
