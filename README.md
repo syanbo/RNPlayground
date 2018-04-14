@@ -1,5 +1,7 @@
 # React-Native
 
+### 目录
+
 * [代码规范](#代码规范)
 * [项目规范](#项目规范)
 * [调试工具](#调试工具)
@@ -33,3 +35,7 @@
   `brew update && brew cask install react-native-debugger`
 
 * [直接下载](https://github.com/jhen0409/react-native-debugger/releases)
+
+## 待办
+
+* [x] 添加自定义 Icon

@@ -6,8 +6,11 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import CIcon from './common/IconFont';
 import { observer, Provider, inject } from 'mobx-react';
-import stores from './src/stores';
+import stores from './stores/index';
+import Config from './common/config';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -24,9 +27,23 @@ export default class App extends Component<Props> {
 @observer
 class Cell extends Component {
   render() {
-    console.log(this.props, '--');
+    // CIcon.getImageSource('play', 20, 'red').then(source => console.log(source));
     return (
       <View style={styles.container}>
+        <Icon name="rocket" size={30} color="#900" />
+        <CIcon.Button
+          name="play"
+          size={30}
+          color="#FFF"
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingRight: 10
+          }}
+        >
+          自定义 IconFont
+        </CIcon.Button>
+        <CIcon name={'yes'} size={30} color={'red'} />
         <Text>Hello Mobx {this.props.user.age}</Text>
         <Text
           onPress={() => {
@@ -35,6 +52,7 @@ class Cell extends Component {
         >
           修改 age
         </Text>
+        <Text>{Config.HOST_TITLE}</Text>
       </View>
     );
   }
