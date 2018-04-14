@@ -4,7 +4,6 @@
  * Project [ RNPlayground ] Coded on WebStorm.
  */
 import { types } from 'mobx-state-tree';
-
 const User = types
   .model('User', {
     name: types.string,

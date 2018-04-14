@@ -1,8 +1,4 @@
 {
-  "extends": ["react-native-prettier"],
-  "rules": {
-    "prettier/prettier": ["error", {
-      "singleQuote": true
-    }]
-  }
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "rules": {}
 }
