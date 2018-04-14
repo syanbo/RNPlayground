@@ -6,37 +6,39 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { observer, Provider } from 'mobx-react';
-import makeInspectable from 'mobx-devtools-mst';
+import { observer, Provider, inject } from 'mobx-react';
 import stores from './src/stores';
 
-makeInspectable(stores);
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
       <Provider {...stores}>
-        <Home />
+        <Cell />
       </Provider>
     );
   }
 }
 
-const Home = observer(props => {
-  console.log(props);
-  return (
-    <View style={styles.container}>
-      <Text>Hello Mobx {props.user.age}</Text>
-      <Text
-        onPress={() => {
-          props.user.updateAge(30);
-        }}
-      >
-        修改 age
-      </Text>
-    </View>
-  );
-});
+@inject('user')
+@observer
+class Cell extends Component {
+  render() {
+    console.log(this.props, '--');
+    return (
+      <View style={styles.container}>
+        <Text>Hello Mobx {this.props.user.age}</Text>
+        <Text
+          onPress={() => {
+            this.props.user.updateAge(this.props.user.age + 1);
+          }}
+        >
+          修改 age
+        </Text>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5
+    marginBottom: 5,
+    backgroundColor: 'red'
   }
 });
