@@ -45,7 +45,7 @@ export default class index extends React.Component {
   }
 }
 
-class Shadow extends React.PureComponent {
+class Shadow extends React.Component {
   /**
    * PureComponent 使用注意
    * 当有深层次的props赋值的时候

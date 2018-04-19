@@ -11,12 +11,29 @@ import stores from './stores/index';
 import configAppNavigator from './routes';
 
 export default class App extends Component {
+  state = {
+    initApp: null
+  };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        initApp: 'Tab'
+      });
+    }, 100);
+  }
+
   render() {
-    const App = configAppNavigator('Tab');
-    return (
-      <Provider {...stores}>
-        <App />
-      </Provider>
-    );
+    const { initApp } = this.state;
+    if (!!initApp) {
+      const App = configAppNavigator(initApp);
+      return (
+        <Provider {...stores}>
+          <App />
+        </Provider>
+      );
+    }
+
+    return null;
   }
 }
