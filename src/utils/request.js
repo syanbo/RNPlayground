@@ -27,8 +27,6 @@ function checkStatus(response) {
   }
   const errorText = codeMessage[response.status] || response.statusText;
 
-  console.log(errorText);
-
   const error = new Error(errorText);
   error.name = response.status;
   error.response = response;

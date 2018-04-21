@@ -5,13 +5,27 @@
  */
 
 import React, { PureComponent } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { inject, observer } from 'mobx-react/index';
 
-export default class index extends PureComponent<{}> {
+@inject('user')
+@observer
+export default class index extends PureComponent {
+  handleChangeAge = () => {
+    const { updateAge, age } = this.props.user;
+    updateAge(age + 2);
+  };
   render() {
+    const { phone, age } = this.props.user;
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>个人中心</Text>
+        <Text style={styles.welcome}>车型库</Text>
+        <Text style={styles.instructions}>手机号码{phone}</Text>
+        <Text style={styles.instructions}>年龄{age}</Text>
+        <TouchableOpacity onPress={this.handleChangeAge}>
+          <Text>修改Age</Text>
+        </TouchableOpacity>
       </View>
     );
   }

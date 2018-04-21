@@ -4,44 +4,56 @@
  * Project [ RNPlayground ] Coded on WebStorm.
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { observer, inject } from 'mobx-react';
 
 import { queryBrands } from '../../services/api';
+import { AutoFlatList } from '../../components';
 
-@inject('user')
-@observer
-export default class index extends Component {
+export default class index extends PureComponent {
   /**
    * 使用Async方便简单直接 这是趋势
    * @returns {Promise<void>}
    */
   async componentDidMount() {
-    try {
-      const res = await queryBrands();
-      console.log(res);
-    } catch (e) {
-      console.log('请求失败', e);
-    }
+    // try {
+    //   const res = await queryBrands();
+    //   console.log(res);
+    // } catch (e) {
+    //   console.log('请求失败', e);
+    // }
   }
 
-  handleChangeAge = () => {
-    const { updateAge, age } = this.props.user;
-    updateAge(age + 2);
+  fetchData = page => {
+    return queryBrands(page);
+  };
+
+  renderItem = ({ item }) => {
+    return <Item {...item} />;
   };
 
   render() {
-    const { phone, age } = this.props.user;
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>车型库</Text>
-        <Text style={styles.instructions}>手机号码{phone}</Text>
-        <Text style={styles.instructions}>年龄{age}</Text>
-        <TouchableOpacity onPress={this.handleChangeAge}>
-          <Text>修改Age</Text>
-        </TouchableOpacity>
+        <AutoFlatList
+          contentContainerStyle={styles.list}
+          fetchData={this.fetchData}
+          renderItem={this.renderItem}
+          keyExtractor={(item, index) => index + '' + item.id}
+        />
       </View>
+    );
+  }
+}
+
+class Item extends PureComponent {
+  render() {
+    const { name } = this.props;
+    console.log('----');
+    return (
+      <TouchableOpacity style={{ padding: 20 }}>
+        <Text>{name}</Text>
+      </TouchableOpacity>
     );
   }
 }
@@ -49,9 +61,9 @@ export default class index extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
+    padding: 20,
+    paddingTop: 44
   },
   welcome: {
     fontSize: 20,

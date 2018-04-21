@@ -38,5 +38,9 @@
 
 ## 待办
 
+* [x] 添加 [eslint+prettier+pretty-quick](https://github.com/syanbo/blog/issues/3)
 * [x] 添加自定义 Icon
 * [x] Android 阴影
+* [x] 添加 Theme
+* [x] AutoFlatList (初版)
+* [x] 带超时处理网络请求封装
