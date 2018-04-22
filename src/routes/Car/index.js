@@ -6,9 +6,9 @@
 
 import React, { PureComponent } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-
 import { queryBrands } from '../../services/api';
-import { AutoFlatList } from '../../components';
+import { AutoFlatList, LoaderImage } from '../../components';
+import { Theme } from '../../common';
 
 export default class index extends PureComponent {
   /**
@@ -36,7 +36,7 @@ export default class index extends PureComponent {
     return (
       <View style={styles.container}>
         <AutoFlatList
-          contentContainerStyle={styles.list}
+          style={styles.list}
           fetchData={this.fetchData}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index + '' + item.id}
@@ -48,10 +48,10 @@ export default class index extends PureComponent {
 
 class Item extends PureComponent {
   render() {
-    const { name } = this.props;
-    console.log('----');
+    const { name, avatar } = this.props;
     return (
-      <TouchableOpacity style={{ padding: 20 }}>
+      <TouchableOpacity style={styles.item}>
+        <LoaderImage style={styles.image} source={{ uri: avatar }} />
         <Text>{name}</Text>
       </TouchableOpacity>
     );
@@ -63,16 +63,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
     padding: 20,
-    paddingTop: 44
+    paddingTop: Theme.statusBarHeight
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+    borderWidth: Theme.hairlineWidth,
+    borderColor: 'rgba(0,0,0,0.12)',
+    marginRight: 20
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginTop: 5
+  list: {
+    backgroundColor: '#FFF'
+  },
+  item: {
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });

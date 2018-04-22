@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CIcon from '../../components/IconFont';
-import { observer, inject } from 'mobx-react';
+import { observer, inject } from 'mobx-react/native';
 import Config from '../../common/config';
 import ShadowView from 'react-native-shadow-view';
 

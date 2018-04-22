@@ -37,6 +37,7 @@ const TabNav = TabNavigator(
       activeTintColor: 'tomato',
       inactiveTintColor: 'gray'
     },
+    initialRouteName: 'Car',
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,

@@ -6,5 +6,6 @@
 
 import Icon from './IconFont';
 import AutoFlatList from './AutoFlatList';
+import LoaderImage from './LoaderImage';
 
-export { AutoFlatList, Icon };
+export { AutoFlatList, Icon, LoaderImage };

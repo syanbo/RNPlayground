@@ -6,7 +6,7 @@
 
 import React, { PureComponent } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { inject, observer } from 'mobx-react/index';
+import { inject, observer } from 'mobx-react/native';
 
 @inject('user')
 @observer
