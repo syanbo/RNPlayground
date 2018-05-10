@@ -8,12 +8,15 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { StackNavigator, TabBarBottom, TabNavigator } from 'react-navigation';
 
+import Exemples from './Exemples';
 import Home from './Home';
 import Car from './Car';
 import My from './My';
+import DeckSwiperScreen from './Exemples/DeckSwiperScreen';
 
 const TabNav = TabNavigator(
   {
+    Exemples: { screen: Exemples },
     Home: { screen: Home },
     Car: { screen: Car },
     My: { screen: My }
@@ -29,6 +32,8 @@ const TabNav = TabNavigator(
           iconName = 'md-car';
         } else if (routeName === 'My') {
           iconName = 'md-paper';
+        } else {
+          iconName = 'ios-color-filter';
         }
         return <Ionicons name={iconName} size={25} color={tintColor} />;
       }
@@ -37,7 +42,7 @@ const TabNav = TabNavigator(
       activeTintColor: 'tomato',
       inactiveTintColor: 'gray'
     },
-    initialRouteName: 'Car',
+    initialRouteName: 'Exemples',
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,
@@ -50,6 +55,9 @@ const configAppNavigator = initialRouteName => {
     {
       Tab: {
         screen: TabNav
+      },
+      DeckSwiperScreen: {
+        screen: DeckSwiperScreen
       }
     },
     {

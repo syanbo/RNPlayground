@@ -18,6 +18,7 @@
     "qs": "^6.5.1",
     "react": "16.3.1",
     "react-native": "0.55.2",
+    "react-native-deck-swiper": "^1.5.9",
     "react-native-fast-image": "^4.0.4",
     "react-native-shadow-view": "^0.0.1",
     "react-native-svg": "^6.3.1",

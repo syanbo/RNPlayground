@@ -6,4 +6,6 @@ YellowBox.ignoreWarnings([
   'Module RCTImageLoader'
 ]);
 
+console.disableYellowBox = true;
+
 AppRegistry.registerComponent('RNPlayground', () => App);
