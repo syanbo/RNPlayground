@@ -9,17 +9,23 @@ import {
   Text,
   View,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  DeviceEventEmitter
 } from 'react-native';
 import { Theme } from '../../common';
 
 export default class index extends PureComponent {
-  cells = [{ name: 'DeckSwiperScreen' }];
+  cells = [
+    { routeName: 'DeckSwipeScreen', title: 'Swipe手势组件' },
+    { title: '设置底部TabBar角标', type: 'badge' }
+  ];
 
-  pushExemple = name => {
+  pushExemple = ({ routeName, type }) => {
     const { navigation } = this.props;
-    console.log(navigation);
-    navigation.push(name);
+    !!routeName && navigation.push(routeName);
+    if (type === 'badge') {
+      DeviceEventEmitter.emit('changeTabBadge', 'Car', 12);
+    }
   };
 
   renderItem = ({ item }) => {
@@ -42,10 +48,10 @@ export default class index extends PureComponent {
 
 class Item extends PureComponent {
   render() {
-    const { name, onPress } = this.props;
+    const { title, onPress } = this.props;
     return (
-      <TouchableOpacity style={styles.item} onPress={() => onPress(name)}>
-        <Text>{name}</Text>
+      <TouchableOpacity style={styles.item} onPress={() => onPress(this.props)}>
+        <Text>{title}</Text>
       </TouchableOpacity>
     );
   }

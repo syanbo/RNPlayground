@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Swiper from 'react-native-deck-swiper';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 
-export default class DeckSwiperScreen extends Component {
+export default class DeckSwipeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -6,15 +6,19 @@
 
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { StackNavigator, TabBarBottom, TabNavigator } from 'react-navigation';
+import {
+  createBottomTabNavigator,
+  createStackNavigator
+} from 'react-navigation';
+import { BottomTabBar } from '../components';
 
 import Exemples from './Exemples';
 import Home from './Home';
 import Car from './Car';
 import My from './My';
-import DeckSwiperScreen from './Exemples/DeckSwiperScreen';
+import DeckSwipeScreen from './Exemples/DeckSwipeScreen';
 
-const TabNav = TabNavigator(
+const TabNav = createBottomTabNavigator(
   {
     Exemples: { screen: Exemples },
     Home: { screen: Home },
@@ -43,7 +47,7 @@ const TabNav = TabNavigator(
       inactiveTintColor: 'gray'
     },
     initialRouteName: 'Exemples',
-    tabBarComponent: TabBarBottom,
+    tabBarComponent: BottomTabBar,
     tabBarPosition: 'bottom',
     animationEnabled: false,
     swipeEnabled: false
@@ -51,13 +55,13 @@ const TabNav = TabNavigator(
 );
 
 const configAppNavigator = initialRouteName => {
-  return StackNavigator(
+  return createStackNavigator(
     {
       Tab: {
         screen: TabNav
       },
-      DeckSwiperScreen: {
-        screen: DeckSwiperScreen
+      DeckSwipeScreen: {
+        screen: DeckSwipeScreen
       }
     },
     {
