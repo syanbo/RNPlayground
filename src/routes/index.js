@@ -54,6 +54,18 @@ const TabNav = createBottomTabNavigator(
   }
 );
 
+TabNav.navigationOptions = ({ navigation }) => {
+  const { routes, index } = navigation.state;
+  const navigationOptions = {};
+
+  if (routes[index].routeName === 'Exemples') {
+    navigationOptions.title = '首页';
+  } else {
+    navigationOptions.title = '其他';
+  }
+
+  return navigationOptions;
+};
 const configAppNavigator = initialRouteName => {
   return createStackNavigator(
     {
@@ -67,7 +79,7 @@ const configAppNavigator = initialRouteName => {
     {
       initialRouteName: initialRouteName,
       navigationOptions: {
-        header: null
+        // header: null
       }
     }
   );

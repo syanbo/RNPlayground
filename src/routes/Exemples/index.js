@@ -24,7 +24,7 @@ export default class index extends PureComponent {
     const { navigation } = this.props;
     !!routeName && navigation.push(routeName);
     if (type === 'badge') {
-      DeviceEventEmitter.emit('changeTabBadge', 'Car', 12);
+      DeviceEventEmitter.emit('changeTabBadge', 'Car', 121);
     }
   };
 

@@ -30,7 +30,7 @@ export default class TabBarIcon extends React.Component<Props> {
       const { route } = this.props;
       if (routeName === route.routeName) {
         this.setState({
-          count
+          count: count
         });
       }
     });
@@ -68,7 +68,7 @@ const Badge = ({ count, focused }) => {
     if (focused) {
       return (
         <View style={styles.badge}>
-          <Text style={styles.badgeText}>{count}</Text>
+          <Text style={styles.badgeText}>{count > 99 ? '99+' : count}</Text>
         </View>
       );
     } else {
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     height: 16,
     borderRadius: 8,
     position: 'absolute',
+    justifyContent: 'center',
     ...Platform.select({
       ios: {
         right: -16,

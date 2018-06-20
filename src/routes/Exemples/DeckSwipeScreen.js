@@ -7,6 +7,9 @@ import Swiper from 'react-native-deck-swiper';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 
 export default class DeckSwipeScreen extends Component {
+  static navigationOptions = {
+    headerTitle: 'DeckSwipeScreen'
+  };
   constructor(props) {
     super(props);
     this.state = {

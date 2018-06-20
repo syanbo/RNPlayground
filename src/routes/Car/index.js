@@ -11,6 +11,9 @@ import { AutoFlatList, LoaderImage } from '../../components';
 import { Theme } from '../../common';
 
 export default class index extends PureComponent {
+  static navigationOptions = {
+    headerTitle: '车型库'
+  };
   /**
    * 使用Async方便简单直接 这是趋势
    * @returns {Promise<void>}
