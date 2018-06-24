@@ -136,6 +136,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-smartrefreshlayout')
     compile project(':react-native-fast-image')
     compile project(':react-native-svg')
     compile project(':react-native-vector-icons')

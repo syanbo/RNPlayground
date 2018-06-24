@@ -17,7 +17,8 @@ import { Theme } from '../../common';
 export default class index extends PureComponent {
   cells = [
     { routeName: 'DeckSwipeScreen', title: 'Swipe手势组件' },
-    { title: '设置底部TabBar角标', type: 'badge' }
+    { title: '设置底部TabBar角标', type: 'badge' },
+    { routeName: 'ScrollableTabScreen', title: 'ScrollableTabView' }
   ];
 
   pushExemple = ({ routeName, type }) => {

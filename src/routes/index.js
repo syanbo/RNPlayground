@@ -17,6 +17,7 @@ import Home from './Home';
 import Car from './Car';
 import My from './My';
 import DeckSwipeScreen from './Exemples/DeckSwipeScreen';
+import ScrollableTabScreen from './Exemples/ScrollableTabScreen';
 
 const TabNav = createBottomTabNavigator(
   {
@@ -74,12 +75,15 @@ const configAppNavigator = initialRouteName => {
       },
       DeckSwipeScreen: {
         screen: DeckSwipeScreen
+      },
+      ScrollableTabScreen: {
+        screen: ScrollableTabScreen
       }
     },
     {
       initialRouteName: initialRouteName,
       navigationOptions: {
-        // header: null
+        header: null
       }
     }
   );

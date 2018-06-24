@@ -8,5 +8,5 @@ import Icon from './IconFont';
 import AutoFlatList from './AutoFlatList';
 import LoaderImage from './LoaderImage';
 import BottomTabBar from './BottomTabBar';
-
-export { AutoFlatList, Icon, LoaderImage, BottomTabBar };
+import ScrollableTabView from './ScrollableTabView';
+export { AutoFlatList, Icon, LoaderImage, BottomTabBar, ScrollableTabView };
