@@ -18,6 +18,7 @@ import Car from './Car';
 import My from './My';
 import DeckSwipeScreen from './Exemples/DeckSwipeScreen';
 import ScrollableTabScreen from './Exemples/ScrollableTabScreen';
+import PopoverScreen from './Exemples/PopoverScreen';
 
 const TabNav = createBottomTabNavigator(
   {
@@ -78,6 +79,9 @@ const configAppNavigator = initialRouteName => {
       },
       ScrollableTabScreen: {
         screen: ScrollableTabScreen
+      },
+      PopoverScreen: {
+        screen: PopoverScreen
       }
     },
     {
