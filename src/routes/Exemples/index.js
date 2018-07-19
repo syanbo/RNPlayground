@@ -19,7 +19,8 @@ export default class index extends PureComponent {
     { routeName: 'DeckSwipeScreen', title: 'Swipe手势组件' },
     { title: '设置底部TabBar角标', type: 'badge' },
     { routeName: 'ScrollableTabScreen', title: 'ScrollableTabView' },
-    { routeName: 'PopoverScreen', title: 'PopoverScreen' }
+    { routeName: 'PopoverScreen', title: 'PopoverScreen' },
+    { routeName: 'SectionListScreen', title: 'SectionListScreen' }
   ];
 
   pushExemple = ({ routeName, type }) => {

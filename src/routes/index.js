@@ -19,6 +19,7 @@ import My from './My';
 import DeckSwipeScreen from './Exemples/DeckSwipeScreen';
 import ScrollableTabScreen from './Exemples/ScrollableTabScreen';
 import PopoverScreen from './Exemples/PopoverScreen';
+import SectionListScreen from './Exemples/SectionListScreen';
 
 const TabNav = createBottomTabNavigator(
   {
@@ -82,6 +83,9 @@ const configAppNavigator = initialRouteName => {
       },
       PopoverScreen: {
         screen: PopoverScreen
+      },
+      SectionListScreen: {
+        screen: SectionListScreen
       }
     },
     {

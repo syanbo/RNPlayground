@@ -46,3 +46,4 @@
 * [x] 带超时处理网络请求封装
 * [x] 新增自定义 TabBar 带角标处理
 * [x] 新增 Popover
+* [x] 新增 ScrollableTabView 吸顶(初版)
