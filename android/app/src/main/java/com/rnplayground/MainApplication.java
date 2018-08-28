@@ -3,6 +3,7 @@ package com.rnplayground;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.github.yamill.orientation.OrientationPackage;
 import com.lmy.smartrefreshlayout.SmartRefreshLayoutPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.horcrux.svg.SvgPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new OrientationPackage(),
             new SmartRefreshLayoutPackage(),
             new FastImageViewPackage(),
                     new SvgPackage(),

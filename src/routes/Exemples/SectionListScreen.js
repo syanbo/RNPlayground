@@ -5,7 +5,14 @@
  */
 
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, SectionList, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  SectionList,
+  Text,
+  FlatList,
+  TouchableOpacity
+} from 'react-native';
 
 import ScrollableTabView, {
   DefaultTabBar
@@ -22,9 +29,12 @@ export default class SectionListScreen extends PureComponent {
   }
 
   renderSectionHeader = ({ section: { title } }) => (
-    <ScrollableTabView renderTabBar={() => <DefaultTabBar someProp={'here'} />}>
+    <ScrollableTabView
+      style={{ height: 1200 }}
+      renderTabBar={() => <DefaultTabBar someProp={'here'} />}
+    >
       <View style={{ height: 1200, backgroundColor: 'red' }} tabLabel="React" />
-      <View tabLabel="Flow" />
+      <List tabLabel="Flow" />
       <View tabLabel="Jest" />
     </ScrollableTabView>
   );
@@ -38,7 +48,13 @@ export default class SectionListScreen extends PureComponent {
           )}
           renderSectionHeader={this.renderSectionHeader}
           ListHeaderComponent={
-            <View style={{ height: 200, backgroundColor: '#000' }} />
+            <TouchableOpacity
+              style={{ height: 200, backgroundColor: '#000' }}
+              onPress={() => {
+                const { navigation } = this.props;
+                navigation.navigate('PopoverScreen');
+              }}
+            />
           }
           ListFooterComponent={
             <View style={{ height: 200, backgroundColor: '#000' }} />
@@ -47,6 +63,17 @@ export default class SectionListScreen extends PureComponent {
           keyExtractor={(item, index) => item + index}
         />
       </View>
+    );
+  }
+}
+
+class List extends PureComponent {
+  render() {
+    return (
+      <FlatList
+        data={[{ key: 'a' }, { key: 'b' }]}
+        renderItem={({ item }) => <Text>{item.key}</Text>}
+      />
     );
   }
 }

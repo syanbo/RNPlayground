@@ -4,12 +4,21 @@
  */
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import Orientation from 'react-native-orientation';
 import { Popover } from '../../components';
 
 export default class PopoverScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount() {
+    Orientation.lockToLandscapeLeft();
+  }
+
+  componentWillUnmount() {
+    Orientation.lockToPortrait();
   }
 
   handleShowPop = () => {
