@@ -1,11 +1,7 @@
-import { AppRegistry, YellowBox } from 'react-native';
-import App from './src/App';
+/** @format */
 
-YellowBox.ignoreWarnings([
-  'Warning: isMounted(...) is deprecated',
-  'Module RCTImageLoader'
-]);
+import {AppRegistry} from 'react-native';
+import App from './App';
+import {name as appName} from './app.json';
 
-console.disableYellowBox = true;
-
-AppRegistry.registerComponent('RNPlayground', () => App);
+AppRegistry.registerComponent(appName, () => App);
