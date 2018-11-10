@@ -6,7 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   InteractionManager,
-  Platform
+  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -18,23 +18,18 @@ export default class ScrollableTabView extends Component {
   static DefaultTabBar = DefaultTabBar;
   static ScrollableTabBar = ScrollableTabBar;
   static propTypes = {
-    tabBarPosition: PropTypes.oneOf([
-      'top',
-      'bottom',
-      'overlayTop',
-      'overlayBottom'
-    ]),
+    tabBarPosition: PropTypes.oneOf(['top', 'bottom', 'overlayTop', 'overlayBottom']),
     initialPage: PropTypes.number,
     page: PropTypes.number,
     onChangeTab: PropTypes.func,
     onScroll: PropTypes.func,
     renderTabBar: PropTypes.any,
-    style: View.propTypes.style,
+    // style: View.propTypes.style,
     contentProps: PropTypes.object,
     scrollWithoutAnimation: PropTypes.bool,
     locked: PropTypes.bool,
     prerenderingSiblingsNumber: PropTypes.number,
-    collapsableBar: PropTypes.node
+    collapsableBar: PropTypes.node,
   };
   static defaultProps = {
     tabBarPosition: 'top',
@@ -45,7 +40,7 @@ export default class ScrollableTabView extends Component {
     contentProps: {},
     scrollWithoutAnimation: false,
     locked: false,
-    prerenderingSiblingsNumber: 0
+    prerenderingSiblingsNumber: 0,
   };
 
   constructor(props) {
@@ -57,7 +52,7 @@ export default class ScrollableTabView extends Component {
       scrollX: new Animated.Value(this.props.initialPage * width),
       scrollValue: new Animated.Value(this.props.initialPage),
       containerWidth: width,
-      sceneKeys: this.newSceneKeys({ currentPage: this.props.initialPage })
+      sceneKeys: this.newSceneKeys({ currentPage: this.props.initialPage }),
     };
   }
 
@@ -81,7 +76,7 @@ export default class ScrollableTabView extends Component {
     if (props.children !== this.props.children) {
       this.updateSceneKeys({
         page: this.state.currentPage,
-        children: props.children
+        children: props.children,
       });
     }
 
@@ -92,18 +87,14 @@ export default class ScrollableTabView extends Component {
 
   goToPage = (pageNumber, animated = !this.props.scrollWithoutAnimation) => {
     const offset = pageNumber * this.state.containerWidth;
-    if (
-      this.scrollView &&
-      this.scrollView._component &&
-      this.scrollView._component.scrollTo
-    ) {
+    if (this.scrollView && this.scrollView._component && this.scrollView._component.scrollTo) {
       this.scrollView._component.scrollTo({ x: offset, y: 0, animated });
     }
 
     const currentPage = this.state.currentPage;
     this.updateSceneKeys({
       page: pageNumber,
-      callback: this._onChangeTab.bind(this, currentPage, pageNumber)
+      callback: this._onChangeTab.bind(this, currentPage, pageNumber),
     });
   };
 
@@ -117,31 +108,20 @@ export default class ScrollableTabView extends Component {
     }
   };
 
-  updateSceneKeys = ({
-    page,
-    children = this.props.children,
-    callback = () => {}
-  }) => {
+  updateSceneKeys = ({ page, children = this.props.children, callback = () => {} }) => {
     let newKeys = this.newSceneKeys({
       previousKeys: this.state.sceneKeys,
       currentPage: page,
-      children
+      children,
     });
     this.setState({ currentPage: page, sceneKeys: newKeys }, callback);
   };
 
-  newSceneKeys = ({
-    previousKeys = [],
-    currentPage = 0,
-    children = this.props.children
-  }) => {
+  newSceneKeys = ({ previousKeys = [], currentPage = 0, children = this.props.children }) => {
     let newKeys = [];
     this._children(children).forEach((child, idx) => {
       let key = this._makeSceneKey(child, idx);
-      if (
-        this._keyExists(previousKeys, key) ||
-        this._shouldRenderSceneKey(idx, currentPage)
-      ) {
+      if (this._keyExists(previousKeys, key) || this._shouldRenderSceneKey(idx, currentPage)) {
         newKeys.push(key);
       }
     });
@@ -150,10 +130,7 @@ export default class ScrollableTabView extends Component {
 
   _shouldRenderSceneKey = (idx, currentPageKey) => {
     let numOfSibling = this.props.prerenderingSiblingsNumber;
-    return (
-      idx < currentPageKey + numOfSibling + 1 &&
-      idx > currentPageKey - numOfSibling - 1
-    );
+    return idx < currentPageKey + numOfSibling + 1 && idx > currentPageKey - numOfSibling - 1;
   };
 
   _keyExists = (sceneKeys, key) => {
@@ -172,7 +149,7 @@ export default class ScrollableTabView extends Component {
         pagingEnabled
         automaticallyAdjustContentInsets={false}
         contentOffset={{
-          x: this.props.initialPage * this.state.containerWidth
+          x: this.props.initialPage * this.state.containerWidth,
         }}
         ref={scrollView => {
           this.scrollView = scrollView;
@@ -180,11 +157,11 @@ export default class ScrollableTabView extends Component {
         onScroll={Animated.event(
           [
             {
-              nativeEvent: { contentOffset: { x: this.state.scrollX } }
-            }
+              nativeEvent: { contentOffset: { x: this.state.scrollX } },
+            },
           ],
           {
-            useNativeDriver: true
+            useNativeDriver: true,
           }
         )}
         onMomentumScrollBegin={this._onMomentumScrollBeginAndEnd}
@@ -222,8 +199,7 @@ export default class ScrollableTabView extends Component {
         <SceneComponent
           key={child.key}
           shouldUpdated={
-            !!this.props.collapsableBar ||
-            this._shouldRenderSceneKey(idx, this.state.currentPage)
+            !!this.props.collapsableBar || this._shouldRenderSceneKey(idx, this.state.currentPage)
           }
           style={{ width: this.state.containerWidth }}
         >
@@ -250,7 +226,7 @@ export default class ScrollableTabView extends Component {
     const currentPage = this.state.currentPage;
     this.updateSceneKeys({
       page: localNextPage,
-      callback: this._onChangeTab.bind(this, currentPage, localNextPage)
+      callback: this._onChangeTab.bind(this, currentPage, localNextPage),
     });
   };
 
@@ -258,14 +234,14 @@ export default class ScrollableTabView extends Component {
     this.props.onChangeTab({
       i: currentPage,
       ref: this._children()[currentPage],
-      from: prevPage
+      from: prevPage,
     });
 
     if (this.contentScrollDistance >= this.collapsableBarHeight) {
       this.contentView.scrollTo({
         x: 0,
         y: this.collapsableBarHeight,
-        animated: false
+        animated: false,
       });
     }
   };
@@ -292,21 +268,20 @@ export default class ScrollableTabView extends Component {
     return React.cloneElement(this.props.collapsableBar, {
       onLayout: event => {
         this.collapsableBarHeight = event.nativeEvent.layout.height;
-      }
+      },
     });
   };
 
   render() {
     let overlayTabs =
-      this.props.tabBarPosition === 'overlayTop' ||
-      this.props.tabBarPosition === 'overlayBottom';
+      this.props.tabBarPosition === 'overlayTop' || this.props.tabBarPosition === 'overlayBottom';
     let tabBarProps = {
       goToPage: this.goToPage,
       tabs: this._children().map(child => child.props.tabLabel),
       activeTab: this.state.currentPage,
       scrollX: this.state.scrollX,
       scrollValue: this.state.scrollValue,
-      containerWidth: this.state.containerWidth
+      containerWidth: this.state.containerWidth,
     };
 
     if (this.props.tabBarBackgroundColor) {
@@ -329,7 +304,7 @@ export default class ScrollableTabView extends Component {
         position: 'absolute',
         left: 0,
         right: 0,
-        [this.props.tabBarPosition === 'overlayTop' ? 'top' : 'bottom']: 0
+        [this.props.tabBarPosition === 'overlayTop' ? 'top' : 'bottom']: 0,
       };
     }
     const ContainerView = this.props.collapsableBar ? ScrollView : View;
@@ -350,17 +325,16 @@ export default class ScrollableTabView extends Component {
         {this.renderCollapsableBar()}
         {this.props.tabBarPosition === 'top' && this.renderTabBar(tabBarProps)}
         {this.renderScrollableContent()}
-        {(this.props.tabBarPosition === 'bottom' || overlayTabs) &&
-          this.renderTabBar(tabBarProps)}
+        {(this.props.tabBarPosition === 'bottom' || overlayTabs) && this.renderTabBar(tabBarProps)}
       </ContainerView>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   scrollableContentAndroid: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

@@ -1,4 +1,9 @@
 {
-  "extends": ["react-app", "plugin:prettier/recommended"],
-  "rules": {}
+  "extends": ["react-app", "plugin:prettier/recommended", "eslint:recommended"],
+  "globals": {},
+  "rules": {
+    "max-len": ["error", { "code": 200, "ignoreUrls": true }],
+    "no-restricted-globals": "error",
+    "no-console": "off"
+  }
 }

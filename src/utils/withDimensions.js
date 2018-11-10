@@ -16,7 +16,7 @@ export default function withDimensions(WrappedComponent) {
 
     state = {
       dimensions: { width, height },
-      isLandscape: isOrientationLandscape({ width, height })
+      isLandscape: isOrientationLandscape({ width, height }),
     };
 
     componentDidMount() {

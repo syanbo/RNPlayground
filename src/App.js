@@ -5,30 +5,30 @@
  */
 
 import React, { Component } from 'react';
-import { Provider } from 'mobx-react';
-import stores from './stores/index';
+import { Provider } from 'react-redux';
+import stores from './models/index';
 
-import configAppNavigator from './routes';
+import configAppNavigator from './pages';
 
 export default class App extends Component {
   state = {
-    initApp: null
+    initApp: null,
   };
 
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        initApp: 'Tab'
+        initApp: 'Tab',
       });
     }, 100);
   }
 
   render() {
     const { initApp } = this.state;
-    if (!!initApp) {
+    if (initApp) {
       const App = configAppNavigator(initApp);
       return (
-        <Provider {...stores}>
+        <Provider store={stores}>
           <App />
         </Provider>
       );

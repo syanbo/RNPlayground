@@ -6,48 +6,36 @@
  */
 
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Platform,
-  DeviceEventEmitter,
-  Text
-} from 'react-native';
+import { View, StyleSheet, Platform, DeviceEventEmitter, Text } from 'react-native';
 
 type Props = {
   route: any,
   activeTintColor: any,
   inactiveTintColor: any,
-  renderIcon: any
+  renderIcon: any,
 };
 
 export default class TabBarIcon extends React.Component<Props> {
   state = {
-    count: 0
+    count: 0,
   };
   componentDidMount() {
     DeviceEventEmitter.addListener('changeTabBadge', (routeName, count) => {
       const { route } = this.props;
       if (routeName === route.routeName) {
         this.setState({
-          count: count
+          count: count,
         });
       }
     });
   }
 
   render() {
-    const {
-      route,
-      activeTintColor,
-      inactiveTintColor,
-      renderIcon,
-      focused
-    } = this.props;
+    const { route, activeTintColor, inactiveTintColor, renderIcon, focused } = this.props;
 
     const { count } = this.state;
 
-    console.log(route, focused);
+    // console.log(route, focused);
     // We render the icon twice at the same position on top of each other:
     // active and inactive one, so we can fade between them.
     return (
@@ -55,7 +43,7 @@ export default class TabBarIcon extends React.Component<Props> {
         {renderIcon({
           route,
           focused,
-          tintColor: focused ? activeTintColor : inactiveTintColor
+          tintColor: focused ? activeTintColor : inactiveTintColor,
         })}
         <Badge count={count} focused={focused} />
       </View>
@@ -83,7 +71,7 @@ const styles = StyleSheet.create({
   icon: {
     justifyContent: 'center',
     alignItems: 'center',
-    overflow: 'visible'
+    overflow: 'visible',
   },
   dian: {
     backgroundColor: 'red',
@@ -94,13 +82,13 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         right: -8,
-        top: -4
+        top: -4,
       },
       android: {
         right: 18,
-        top: -0
-      }
-    })
+        top: -0,
+      },
+    }),
   },
   badge: {
     backgroundColor: 'red',
@@ -111,17 +99,17 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         right: -16,
-        top: -4
+        top: -4,
       },
       android: {
         right: 18,
-        top: -0
-      }
-    })
+        top: -0,
+      },
+    }),
   },
   badgeText: {
     color: '#fff',
     fontSize: 12,
-    marginHorizontal: 5
-  }
+    marginHorizontal: 5,
+  },
 });

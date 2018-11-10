@@ -5,13 +5,7 @@
  */
 
 import React, { PureComponent } from 'react';
-import {
-  View,
-  FlatList,
-  Text,
-  ActivityIndicator,
-  StyleSheet
-} from 'react-native';
+import { View, FlatList, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { px2dp, Theme } from '../common';
 
@@ -28,14 +22,14 @@ export default class AutoFlatList extends PureComponent {
     ListLoadMoredComponent: PropTypes.element, //加载更多完成的组件
     ListNoMoreDataComponent: PropTypes.element, //没有更多数据的组件
     onRefreshCallBack: PropTypes.func, //下拉刷新的回调事件
-    loadingView: PropTypes.element //初次加载的loading视图
+    loadingView: PropTypes.element, //初次加载的loading视图
   };
 
   static defaultProps = {
     enableLoadMore: true,
     enableRefresh: true,
     ListFooterComponent: <View style={{ height: px2dp(60) }} />,
-    judgeNoMoreData: (newData, page) => newData.length < 10
+    judgeNoMoreData: (newData, page) => newData.length < 10,
   };
 
   state = {
@@ -44,7 +38,7 @@ export default class AutoFlatList extends PureComponent {
     isEndRefresh: false,
     isNoMoreData: false,
     isLoading: true,
-    error: null
+    error: null,
   };
 
   page = 1;
@@ -60,32 +54,32 @@ export default class AutoFlatList extends PureComponent {
     console.log('数据', data, isTopRefresh, error);
     if (error) {
       this.setState({
-        error: null
+        error: null,
       });
     }
 
     this.setState({
       isNoMoreData: judgeNoMoreData(data, this.page),
-      isLoading: false
+      isLoading: false,
     });
 
     if (this.page === 1) {
       this.setState({
-        data
+        data,
       });
       if (isTopRefresh) {
         this.setState({
-          isTopRefresh: false
+          isTopRefresh: false,
         });
       }
     } else {
       const newData = [...this.state.data, ...data];
       this.setState({
-        data: newData
+        data: newData,
       });
       setTimeout(() => {
         this.setState({
-          isEndRefresh: false
+          isEndRefresh: false,
         });
       }, 100);
     }
@@ -112,20 +106,20 @@ export default class AutoFlatList extends PureComponent {
     const { fetchData, catchHandle } = this.props;
     if (error) {
       this.setState({
-        isLoading: true
+        isLoading: true,
       });
     }
     fetchData(this.page)
       .then(data => this.setData(data))
       .catch(e => {
         this.setState({
-          isLoading: false
+          isLoading: false,
         });
         if (catchHandle) {
           catchHandle(e);
         } else {
           this.setState({
-            error: e
+            error: e,
           });
         }
       });
@@ -134,18 +128,12 @@ export default class AutoFlatList extends PureComponent {
   onEndReached = () => {
     const { data, isTopRefresh, isEndRefresh, isNoMoreData } = this.state;
     const { enableLoadMore } = this.props;
-    if (
-      data.length === 0 ||
-      isTopRefresh ||
-      isEndRefresh ||
-      isNoMoreData ||
-      !enableLoadMore
-    )
+    if (data.length === 0 || isTopRefresh || isEndRefresh || isNoMoreData || !enableLoadMore)
       return;
 
     this.page += 1;
     this.setState({
-      isEndRefresh: true
+      isEndRefresh: true,
     });
     this.loadData();
   };
@@ -155,7 +143,7 @@ export default class AutoFlatList extends PureComponent {
     this.page = 1;
     this.setState({
       isTopRefresh: true,
-      isNoMoreData: false
+      isNoMoreData: false,
     });
 
     this.loadData();
@@ -216,7 +204,7 @@ export class FootView extends PureComponent {
       ListLoadMoringComponent,
       ListNoMoreDataComponent,
       ListLoadMoredComponent,
-      enableLoadMore
+      enableLoadMore,
     } = this.props;
 
     if (data.length === 0) {
@@ -240,11 +228,7 @@ export class FootView extends PureComponent {
             onEndReached();
           }}
         >
-          {isEndRefresh
-            ? '正在加载中...'
-            : isNoMoreData
-              ? '------暂无数据------'
-              : '点击加载更多'}
+          {isEndRefresh ? '正在加载中...' : isNoMoreData ? '------暂无数据------' : '点击加载更多'}
         </Text>
       </View>
     ) : null;
@@ -254,35 +238,35 @@ export class FootView extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.bgColor
+    backgroundColor: Theme.bgColor,
   },
   loadingView: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   loadMoreView: {
     height: 40,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   text: {
-    fontSize: 13
+    fontSize: 13,
   },
   emptyImage: {
     width: px2dp(93),
     height: px2dp(100),
-    marginTop: px2dp(160)
+    marginTop: px2dp(160),
   },
   emptyText: {
     ...Theme.medium,
     color: Theme.black26,
     fontSize: 16,
-    marginTop: px2dp(36)
+    marginTop: px2dp(36),
   },
   emptyContainer: {
     flex: 1,
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });

@@ -4,25 +4,25 @@
  * Project [ RNPlayground ] Coded on WebStorm.
  */
 import React, { PureComponent } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Image } from 'react-native';
 import uuid from 'uuid/v4';
-import FastImage from 'react-native-fast-image';
+// import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 
-const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
+const AnimatedFastImage = Animated.createAnimatedComponent(Image);
 export default class LoaderImage extends PureComponent {
   static propTypes = {
     /**
      * 是否使用缓存
      */
     noCache: PropTypes.bool,
-    ...FastImage.propTypes
+    // ...FastImage.propTypes,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      intensity: new Animated.Value(0.1)
+      intensity: new Animated.Value(0.1),
     };
   }
 
@@ -31,7 +31,7 @@ export default class LoaderImage extends PureComponent {
     Animated.timing(intensity, {
       duration: 500,
       toValue: 1,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
   };
 

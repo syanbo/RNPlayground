@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
   Easing,
-  ViewPropTypes
+  ViewPropTypes,
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -37,7 +37,7 @@ export default class Popover extends PureComponent {
   static propTypes = {
     isVisible: PropTypes.bool,
     onClose: PropTypes.func,
-    contentStyle: ViewPropTypes.style
+    contentStyle: ViewPropTypes.style,
   };
 
   static defaultProps = {
@@ -45,7 +45,7 @@ export default class Popover extends PureComponent {
     displayArea: new Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),
     arrowSize: DEFAULT_ARROW_SIZE,
     placement: 'auto',
-    onClose: noop
+    onClose: noop,
   };
 
   constructor(props) {
@@ -59,8 +59,8 @@ export default class Popover extends PureComponent {
       defaultAnimatedValues: {
         scale: new Animated.Value(0),
         translate: new Animated.ValueXY(),
-        fade: new Animated.Value(0)
-      }
+        fade: new Animated.Value(0),
+      },
     };
   }
 
@@ -70,14 +70,11 @@ export default class Popover extends PureComponent {
     let geom = this.computeGeometry({ contentSize });
 
     let isAwaitingShow = this.state.isAwaitingShow;
-    this.setState(
-      Object.assign(geom, { contentSize, isAwaitingShow: undefined }),
-      () => {
-        // Once state is set, call the showHandler so it can access all the geometry
-        // from the state
-        isAwaitingShow && this._startAnimation({ show: true });
-      }
-    );
+    this.setState(Object.assign(geom, { contentSize, isAwaitingShow: undefined }), () => {
+      // Once state is set, call the showHandler so it can access all the geometry
+      // from the state
+      isAwaitingShow && this._startAnimation({ show: true });
+    });
   };
 
   computeGeometry = ({ contentSize, placement }) => {
@@ -87,7 +84,7 @@ export default class Popover extends PureComponent {
       displayArea: this.props.displayArea,
       fromRect: this.props.fromRect,
       arrowSize: this.getArrowSize(placement),
-      contentSize
+      contentSize,
     };
 
     switch (placement) {
@@ -108,10 +105,7 @@ export default class Popover extends PureComponent {
     let popoverOrigin = new Point(
       Math.min(
         displayArea.x + displayArea.width - contentSize.width,
-        Math.max(
-          displayArea.x,
-          fromRect.x + (fromRect.width - contentSize.width) / 2
-        )
+        Math.max(displayArea.x, fromRect.x + (fromRect.width - contentSize.width) / 2)
       ),
       fromRect.y - contentSize.height - arrowSize.height
     );
@@ -120,35 +114,24 @@ export default class Popover extends PureComponent {
     return {
       popoverOrigin,
       anchorPoint,
-      placement: 'top'
+      placement: 'top',
     };
   };
 
-  computeBottomGeometry = ({
-    displayArea,
-    fromRect,
-    contentSize,
-    arrowSize
-  }) => {
+  computeBottomGeometry = ({ displayArea, fromRect, contentSize, arrowSize }) => {
     let popoverOrigin = new Point(
       Math.min(
         displayArea.x + displayArea.width - contentSize.width,
-        Math.max(
-          displayArea.x,
-          fromRect.x + (fromRect.width - contentSize.width) / 2
-        )
+        Math.max(displayArea.x, fromRect.x + (fromRect.width - contentSize.width) / 2)
       ),
       fromRect.y + fromRect.height + arrowSize.height
     );
-    let anchorPoint = new Point(
-      fromRect.x + fromRect.width / 2.0,
-      fromRect.y + fromRect.height
-    );
+    let anchorPoint = new Point(fromRect.x + fromRect.width / 2.0, fromRect.y + fromRect.height);
 
     return {
       popoverOrigin,
       anchorPoint,
-      placement: 'bottom'
+      placement: 'bottom',
     };
   };
 
@@ -157,10 +140,7 @@ export default class Popover extends PureComponent {
       fromRect.x - contentSize.width - arrowSize.width,
       Math.min(
         displayArea.y + displayArea.height - contentSize.height,
-        Math.max(
-          displayArea.y,
-          fromRect.y + (fromRect.height - contentSize.height) / 2
-        )
+        Math.max(displayArea.y, fromRect.y + (fromRect.height - contentSize.height) / 2)
       )
     );
     let anchorPoint = new Point(fromRect.x, fromRect.y + fromRect.height / 2.0);
@@ -168,35 +148,24 @@ export default class Popover extends PureComponent {
     return {
       popoverOrigin,
       anchorPoint,
-      placement: 'left'
+      placement: 'left',
     };
   };
 
-  computeRightGeometry = ({
-    displayArea,
-    fromRect,
-    contentSize,
-    arrowSize
-  }) => {
+  computeRightGeometry = ({ displayArea, fromRect, contentSize, arrowSize }) => {
     let popoverOrigin = new Point(
       fromRect.x + fromRect.width + arrowSize.width,
       Math.min(
         displayArea.y + displayArea.height - contentSize.height,
-        Math.max(
-          displayArea.y,
-          fromRect.y + (fromRect.height - contentSize.height) / 2
-        )
+        Math.max(displayArea.y, fromRect.y + (fromRect.height - contentSize.height) / 2)
       )
     );
-    let anchorPoint = new Point(
-      fromRect.x + fromRect.width,
-      fromRect.y + fromRect.height / 2.0
-    );
+    let anchorPoint = new Point(fromRect.x + fromRect.width, fromRect.y + fromRect.height / 2.0);
 
     return {
       popoverOrigin,
       anchorPoint,
-      placement: 'right'
+      placement: 'right',
     };
   };
 
@@ -209,17 +178,15 @@ export default class Popover extends PureComponent {
       const placement = placementsToTry[i];
       geom = this.computeGeometry({
         contentSize: contentSize,
-        placement: placement
+        placement: placement,
       });
       const { popoverOrigin } = geom;
 
       if (
         popoverOrigin.x >= displayArea.x &&
-        popoverOrigin.x <=
-          displayArea.x + displayArea.width - contentSize.width &&
+        popoverOrigin.x <= displayArea.x + displayArea.width - contentSize.width &&
         popoverOrigin.y >= displayArea.y &&
-        popoverOrigin.y <=
-          displayArea.y + displayArea.height - contentSize.height
+        popoverOrigin.y <= displayArea.y + displayArea.height - contentSize.height
       ) {
         break;
       }
@@ -275,7 +242,7 @@ export default class Popover extends PureComponent {
       borderTopWidth: height / 2,
       borderRightWidth: width / 2,
       borderBottomWidth: height / 2,
-      borderLeftWidth: width / 2
+      borderLeftWidth: width / 2,
     };
   };
 
@@ -285,10 +252,7 @@ export default class Popover extends PureComponent {
       popoverOrigin.x + contentSize.width / 2,
       popoverOrigin.y + contentSize.height / 2
     );
-    return new Point(
-      anchorPoint.x - popoverCenter.x,
-      anchorPoint.y - popoverCenter.y
-    );
+    return new Point(anchorPoint.x - popoverCenter.x, anchorPoint.y - popoverCenter.y);
   };
 
   componentWillReceiveProps(nextProps) {
@@ -307,11 +271,10 @@ export default class Popover extends PureComponent {
   }
 
   _startAnimation = ({ show }) => {
-    let handler =
-      this.props.startCustomAnimation || this._startDefaultAnimation;
+    let handler = this.props.startCustomAnimation || this._startDefaultAnimation;
     handler({
       show,
-      doneCallback: () => this.setState({ isTransitioning: false })
+      doneCallback: () => this.setState({ isTransitioning: false }),
     });
     this.setState({ isTransitioning: true });
   };
@@ -327,22 +290,22 @@ export default class Popover extends PureComponent {
 
     let commonConfig = {
       duration: animDuration,
-      easing: show ? Easing.out(Easing.back()) : Easing.inOut(Easing.quad)
+      easing: show ? Easing.out(Easing.back()) : Easing.inOut(Easing.quad),
     };
 
     Animated.parallel([
       Animated.timing(values.fade, {
         toValue: show ? 1 : 0,
-        ...commonConfig
+        ...commonConfig,
       }),
       Animated.timing(values.translate, {
         toValue: show ? new Point(0, 0) : translateOrigin,
-        ...commonConfig
+        ...commonConfig,
       }),
       Animated.timing(values.scale, {
         toValue: show ? 1 : 0,
-        ...commonConfig
-      })
+        ...commonConfig,
+      }),
     ]).start(doneCallback);
   };
 
@@ -357,7 +320,7 @@ export default class Popover extends PureComponent {
 
     return {
       backgroundStyle: {
-        opacity: animatedValues.fade
+        opacity: animatedValues.fade,
       },
       arrowStyle: {
         transform: [
@@ -365,18 +328,18 @@ export default class Popover extends PureComponent {
             scale: animatedValues.scale.interpolate({
               inputRange: [0, 1],
               outputRange: [0, 1],
-              extrapolate: 'clamp'
-            })
-          }
-        ]
+              extrapolate: 'clamp',
+            }),
+          },
+        ],
       },
       contentStyle: {
         transform: [
           { translateX: animatedValues.translate.x },
           { translateY: animatedValues.translate.y },
-          { scale: animatedValues.scale }
-        ]
-      }
+          { scale: animatedValues.scale },
+        ],
+      },
     };
   };
 
@@ -399,7 +362,7 @@ export default class Popover extends PureComponent {
       background,
       popover,
       arrow,
-      content
+      content,
     };
   };
 
@@ -428,23 +391,16 @@ export default class Popover extends PureComponent {
 
     return (
       <TouchableWithoutFeedback onPress={this.props.onClose}>
-        <View
-          style={[
-            styles.container,
-            contentSizeAvailable && styles.containerVisible
-          ]}
-        >
-          <Animated.View
-            style={[styles.background, ...extendedStyles.background]}
-          />
+        <View style={[styles.container, contentSizeAvailable && styles.containerVisible]}>
+          <Animated.View style={[styles.background, ...extendedStyles.background]} />
           <Animated.View
             style={[
               styles.popover,
               {
                 top: popoverOrigin.y,
-                left: popoverOrigin.x - marginRight
+                left: popoverOrigin.x - marginRight,
               },
-              ...extendedStyles.popover
+              ...extendedStyles.popover,
             ]}
           >
             {/*<Animated.View style={arrowStyle}/> 隐藏箭头*/}
@@ -470,27 +426,27 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     position: 'absolute',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   containerVisible: {
-    opacity: 1
+    opacity: 1,
   },
   background: {
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-    position: 'absolute'
+    position: 'absolute',
     //  backgroundColor: 'rgba(0,0,0,0.3)',   //隐藏背景
   },
   popover: {
     backgroundColor: 'transparent',
-    position: 'absolute'
+    position: 'absolute',
   },
   content: {
     borderRadius: 3,
     padding: 6,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
     // shadowColor: 'gray',
     // shadowOffset: {width: 2, height: 2},
     // shadowRadius: 2,
@@ -501,6 +457,6 @@ const styles = StyleSheet.create({
     borderTopColor: 'transparent',
     borderRightColor: 'transparent',
     borderBottomColor: 'transparent',
-    borderLeftColor: 'transparent'
-  }
+    borderLeftColor: 'transparent',
+  },
 });
