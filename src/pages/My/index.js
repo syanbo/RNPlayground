@@ -5,7 +5,7 @@
  */
 
 import React, { PureComponent } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 @connect(
@@ -35,6 +35,8 @@ class Index extends PureComponent {
         <Text style={styles.welcome}>个人中心</Text>
         <Text style={styles.welcome}>车型库</Text>
         <Text style={styles.instructions}> 代办事项数 {totalTodos}</Text>
+        <Image style={styles.image} source={require('../../assets/mu.webp')} />
+        <Image source={require('../../assets/pao.gif')} />
       </View>
     );
   }
@@ -58,5 +60,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  image: {
+    width: 100,
+    height: 100,
   },
 });

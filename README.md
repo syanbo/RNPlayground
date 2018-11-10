@@ -36,6 +36,30 @@
 
 - [直接下载](https://github.com/jhen0409/react-native-debugger/releases)
 
+#### Android 上默认不支持 GIF 和 WebP
+
+```$xslt
+dependencies {
+  // If your app supports Android versions before Ice Cream Sandwich (API level 14)
+  compile 'com.facebook.fresco:animated-base-support:1.10.0'
+
+  // For animated GIF support
+  compile 'com.facebook.fresco:animated-gif:1.10.0'
+
+  // For WebP support, including animated WebP
+  compile 'com.facebook.fresco:animated-webp:1.10.0'
+  compile 'com.facebook.fresco:webpsupport:1.10.0'
+
+  // For WebP support, without animations
+  compile 'com.facebook.fresco:webpsupport:1.10.0'
+}
+```
+
+#### iOS webp 图片支持
+
+`yarn add TGPSKI/react-native-webp-support`
+另外注意 WebP.framework、WebPDemux.framework 添加 Framework Search Paths
+
 #### 添加 Decorators 支持
 
 - babel >= 7.0

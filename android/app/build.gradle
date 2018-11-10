@@ -140,6 +140,11 @@ dependencies {
     compile project(':react-native-smartrefreshlayout')
     compile project(':react-native-orientation')
     compile project(':react-native-vector-icons')
+    // For animated GIF support
+    compile 'com.facebook.fresco:animated-gif:1.10.0'
+    // For WebP support, including animated WebP
+    compile 'com.facebook.fresco:animated-webp:1.10.0'
+    compile 'com.facebook.fresco:webpsupport:1.10.0'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
