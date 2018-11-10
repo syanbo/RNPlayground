@@ -12,7 +12,7 @@ import {
   StyleSheet,
   DeviceInfo,
   NativeModules,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 
 const X_WIDTH = 375;
@@ -55,18 +55,18 @@ export const sanFranciscoWeights = {
   regular: {
     fontFamily: 'System',
     fontWeight: '400',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   medium: {
     fontFamily: 'System',
     fontWeight: '600',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   semibold: {
     fontFamily: 'System',
     fontWeight: '700',
-    backgroundColor: 'transparent'
-  }
+    backgroundColor: 'transparent',
+  },
 };
 
 // Android 文字
@@ -75,20 +75,20 @@ export const robotoWeights = {
     includeFontPadding: false,
     fontFamily: 'sans-serif',
     fontWeight: 'normal',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   medium: {
     includeFontPadding: false,
     fontFamily: 'sans-serif-medium',
     fontWeight: 'normal',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   semibold: {
     includeFontPadding: false,
     fontFamily: 'sans-serif',
     fontWeight: 'bold',
-    backgroundColor: 'transparent'
-  }
+    backgroundColor: 'transparent',
+  },
 };
 
 export default {
@@ -126,22 +126,17 @@ export default {
         shadowOffset: { width: 0, height: 0 },
         shadowColor: '#000',
         shadowOpacity: 0.08,
-        shadowRadius: 12
+        shadowRadius: 12,
       },
       android: {
-        elevation: 4
-      }
-    })
+        elevation: 4,
+      },
+    }),
   },
 
   select: Platform.select,
 
-  Regular:
-    Platform.OS === 'ios' ? sanFranciscoWeights.regular : robotoWeights.regular,
-  Medium:
-    Platform.OS === 'ios' ? sanFranciscoWeights.medium : robotoWeights.medium,
-  Semibold:
-    Platform.OS === 'ios'
-      ? sanFranciscoWeights.semibold
-      : robotoWeights.semibold
+  Regular: Platform.OS === 'ios' ? sanFranciscoWeights.regular : robotoWeights.regular,
+  Medium: Platform.OS === 'ios' ? sanFranciscoWeights.medium : robotoWeights.medium,
+  Semibold: Platform.OS === 'ios' ? sanFranciscoWeights.semibold : robotoWeights.semibold,
 };

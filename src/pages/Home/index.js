@@ -5,24 +5,38 @@
  */
 
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Platform,
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, Text, View, Platform, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux';
 import CIcon from '../../components/IconFont';
-import { observer, inject } from 'mobx-react/native';
 import Config from '../../common/config';
-import ShadowView from 'react-native-shadow-view';
 
-@inject('user')
-@observer
-export default class index extends React.Component {
+@connect(
+  state => {
+    const todosIds = Object.keys(state.todos);
+    return {
+      totalTodos: todosIds.length,
+      completedTodos: todosIds.filter(id => state.todos[id].done).length,
+      todosArray: todosIds.map(id => ({
+        ...state.todos[id],
+        id,
+      })),
+    };
+  },
+  dispatch => ({
+    toggleDone: id => dispatch.todos.toggleDone(id),
+    remove: id => dispatch.todos.remove(id),
+    asyncRemove: id => dispatch.todos.asyncRemove(id),
+    addTodo: dispatch.todos.add,
+  })
+)
+class Index extends React.Component {
+  asyncRemove = id => {
+    const { asyncRemove } = this.props;
+    asyncRemove(id);
+  };
   render() {
-    console.log(Platform.Version);
+    console.log(Platform.Version, this.props);
     return (
       <View style={styles.container}>
         <Icon name="rocket" size={30} color="#900" />
@@ -30,63 +44,49 @@ export default class index extends React.Component {
           自定义 IconFont
         </CIcon.Button>
         <CIcon name={'yes'} size={30} color={'red'} />
-        <Text>Hello Mobx {this.props.user.age}</Text>
+        <Text>Hello Redux</Text>
+        {this.props.todosArray.map((item, index) => (
+          <View key={String(index)}>
+            <Text onPress={() => this.asyncRemove(item.id)}>{item.text}</Text>
+          </View>
+        ))}
         <TouchableOpacity
           onPress={() => {
-            this.props.user.updateAge(this.props.user.age + 1);
+            this.props.addTodo('你好');
           }}
         >
-          <Text style={styles.welcome}>修改 age</Text>
+          <Text style={styles.welcome}>Add TODOs</Text>
         </TouchableOpacity>
         <Text>{Config.HOST_TITLE}</Text>
-        <Shadow style={{ backgroundColor: '#fff' }} />
       </View>
     );
   }
 }
 
-class Shadow extends React.Component {
-  /**
-   * PureComponent 使用注意
-   * 当有深层次的props赋值的时候
-   * 需要自己控制shouldComponentUpdate
-   */
-  shouldComponentUpdate(nextProps) {
-    return JSON.stringify(nextProps) !== JSON.stringify(this.props);
-  }
-
-  render() {
-    const { style } = this.props;
-    return (
-      <ShadowView style={[styles.shadow, style]}>
-        <Text>阴影</Text>
-      </ShadowView>
-    );
-  }
-}
+export default Index;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingRight: 10
+    paddingRight: 10,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10
+    margin: 10,
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-    backgroundColor: 'red'
+    backgroundColor: 'red',
   },
   shadow: {
     marginTop: 10,
@@ -99,9 +99,9 @@ const styles = StyleSheet.create({
     shadowColor: 'red',
     shadowOffset: {
       x: 0,
-      y: 0
+      y: 0,
     },
     shadowOpacity: 0.12,
-    shadowRadius: 6
-  }
+    shadowRadius: 6,
+  },
 });

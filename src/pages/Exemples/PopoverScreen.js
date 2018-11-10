@@ -46,19 +46,19 @@ export default class PopoverScreen extends Component {
 class PopView extends React.PureComponent {
   state = {
     isVisible: false,
-    buttonRect: { x: 0, y: 0, width: 0, height: 0 }
+    buttonRect: { x: 0, y: 0, width: 0, height: 0 },
   };
 
   show = buttonRect => {
     this.setState({
       buttonRect,
-      isVisible: true
+      isVisible: true,
     });
   };
 
   close = () => {
     this.setState({
-      isVisible: false
+      isVisible: false,
     });
   };
 
@@ -82,7 +82,7 @@ class PopView extends React.PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#F5FCFF',
   },
   card: {
     flex: 1,
@@ -90,17 +90,17 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#E8E8E8',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   text: {
     textAlign: 'center',
     fontSize: 50,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   done: {
     textAlign: 'center',
     fontSize: 30,
     color: 'white',
-    backgroundColor: 'transparent'
-  }
+    backgroundColor: 'transparent',
+  },
 });

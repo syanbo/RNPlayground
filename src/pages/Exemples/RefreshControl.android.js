@@ -3,10 +3,7 @@
  */
 import React, { Component } from 'react';
 import { Animated, Easing, Text, ActivityIndicator } from 'react-native';
-import {
-  AnyHeader,
-  SmartRefreshControl
-} from 'react-native-smartrefreshlayout';
+import { AnyHeader, SmartRefreshControl } from 'react-native-smartrefreshlayout';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
@@ -14,35 +11,35 @@ export default class RefreshControlAndroid extends Component {
   state = {
     text: '下拉刷新',
     rotate: new Animated.Value(0),
-    refreshing: false
+    refreshing: false,
   };
   _onPullDownToRefresh = () => {
     this.setState({
       text: '下拉刷新',
-      refreshing: false
+      refreshing: false,
     });
     Animated.timing(this.state.rotate, {
       toValue: 0,
       duration: 197,
       useNativeDriver: true,
-      easing: Easing.linear()
+      easing: Easing.linear(),
     }).start();
   };
   _onReleased = () => {
     this.setState({
       refreshing: true,
-      text: '正在刷新'
+      text: '正在刷新',
     });
   };
   _onReleaseToRefresh = () => {
     this.setState({
-      text: '释放刷新'
+      text: '释放刷新',
     });
     Animated.timing(this.state.rotate, {
       toValue: 1,
       duration: 197,
       useNativeDriver: true,
-      easing: Easing.linear()
+      easing: Easing.linear(),
     }).start();
   };
   _onRefresh = () => {
@@ -69,15 +66,11 @@ export default class RefreshControlAndroid extends Component {
               height: 100,
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
             }}
           >
             {this.state.refreshing ? (
-              <ActivityIndicator
-                style={{ flex: 0 }}
-                size={24}
-                color={'#2783cf'}
-              />
+              <ActivityIndicator style={{ flex: 0 }} size={24} color={'#2783cf'} />
             ) : (
               <AnimatedIcon
                 style={{
@@ -85,10 +78,10 @@ export default class RefreshControlAndroid extends Component {
                     {
                       rotate: this.state.rotate.interpolate({
                         inputRange: [0, 1],
-                        outputRange: ['180deg', '0deg']
-                      })
-                    }
-                  ]
+                        outputRange: ['180deg', '0deg'],
+                      }),
+                    },
+                  ],
                 }}
                 name="md-arrow-up"
                 color="#2783cf"

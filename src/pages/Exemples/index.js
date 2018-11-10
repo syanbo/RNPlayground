@@ -10,7 +10,7 @@ import {
   View,
   TouchableOpacity,
   FlatList,
-  DeviceEventEmitter
+  DeviceEventEmitter,
 } from 'react-native';
 import { Theme } from '../../common';
 
@@ -20,7 +20,7 @@ export default class index extends PureComponent {
     { title: '设置底部TabBar角标', type: 'badge' },
     { routeName: 'ScrollableTabScreen', title: 'ScrollableTabView' },
     { routeName: 'PopoverScreen', title: 'PopoverScreen' },
-    { routeName: 'SectionListScreen', title: 'SectionListScreen' }
+    { routeName: 'SectionListScreen', title: 'SectionListScreen' },
   ];
 
   pushExemple = ({ routeName, type }) => {
@@ -42,7 +42,7 @@ export default class index extends PureComponent {
           style={styles.list}
           data={this.cells}
           renderItem={this.renderItem}
-          keyExtractor={({ name }) => name}
+          keyExtractor={(item, index) => String(index)}
         />
       </View>
     );
@@ -65,15 +65,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     padding: 20,
-    paddingTop: Theme.statusBarHeight
+    paddingTop: Theme.statusBarHeight,
   },
   list: {
     flex: 1,
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
   },
   item: {
     padding: 20,
     flexDirection: 'row',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });

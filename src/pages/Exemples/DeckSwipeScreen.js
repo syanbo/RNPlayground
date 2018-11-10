@@ -8,7 +8,7 @@ import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 
 export default class DeckSwipeScreen extends Component {
   static navigationOptions = {
-    headerTitle: 'DeckSwipeScreen'
+    headerTitle: 'DeckSwipeScreen',
   };
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ export default class DeckSwipeScreen extends Component {
       swipedAllCards: false,
       swipeDirection: '',
       isSwipingBack: false,
-      cardIndex: 0
+      cardIndex: 0,
     };
   }
 
@@ -31,7 +31,7 @@ export default class DeckSwipeScreen extends Component {
 
   onSwipedAllCards = () => {
     this.setState({
-      swipedAllCards: true
+      swipedAllCards: true,
     });
   };
 
@@ -48,7 +48,7 @@ export default class DeckSwipeScreen extends Component {
   setIsSwipingBack = (isSwipingBack, cb) => {
     this.setState(
       {
-        isSwipingBack: isSwipingBack
+        isSwipingBack: isSwipingBack,
       },
       cb
     );
@@ -86,14 +86,14 @@ export default class DeckSwipeScreen extends Component {
                   backgroundColor: 'black',
                   borderColor: 'black',
                   color: 'white',
-                  borderWidth: 1
+                  borderWidth: 1,
                 },
                 wrapper: {
                   flexDirection: 'column',
                   alignItems: 'center',
-                  justifyContent: 'center'
-                }
-              }
+                  justifyContent: 'center',
+                },
+              },
             },
             left: {
               title: 'NOPE',
@@ -102,16 +102,16 @@ export default class DeckSwipeScreen extends Component {
                   backgroundColor: 'black',
                   borderColor: 'black',
                   color: 'white',
-                  borderWidth: 1
+                  borderWidth: 1,
                 },
                 wrapper: {
                   flexDirection: 'column',
                   alignItems: 'flex-end',
                   justifyContent: 'flex-start',
                   marginTop: 30,
-                  marginLeft: -30
-                }
-              }
+                  marginLeft: -30,
+                },
+              },
             },
             right: {
               title: 'LIKE',
@@ -120,16 +120,16 @@ export default class DeckSwipeScreen extends Component {
                   backgroundColor: 'black',
                   borderColor: 'black',
                   color: 'white',
-                  borderWidth: 1
+                  borderWidth: 1,
                 },
                 wrapper: {
                   flexDirection: 'column',
                   alignItems: 'flex-start',
                   justifyContent: 'flex-start',
                   marginTop: 30,
-                  marginLeft: 30
-                }
-              }
+                  marginLeft: 30,
+                },
+              },
             },
             top: {
               title: 'SUPER LIKE',
@@ -138,30 +138,24 @@ export default class DeckSwipeScreen extends Component {
                   backgroundColor: 'black',
                   borderColor: 'black',
                   color: 'white',
-                  borderWidth: 1
+                  borderWidth: 1,
                 },
                 wrapper: {
                   flexDirection: 'column',
                   alignItems: 'center',
-                  justifyContent: 'center'
-                }
-              }
-            }
+                  justifyContent: 'center',
+                },
+              },
+            },
           }}
           animateOverlayLabelsOpacity
           animateCardOpacity
         >
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <TouchableOpacity
-              style={{ marginTop: 44 }}
-              onPress={this.swipeLeft}
-            >
+            <TouchableOpacity style={{ marginTop: 44 }} onPress={this.swipeLeft}>
               <Text>Swipe Left</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={{ marginTop: 44, marginLeft: 40 }}
-              onPress={this.swipeRight}
-            >
+            <TouchableOpacity style={{ marginTop: 44, marginLeft: 40 }} onPress={this.swipeRight}>
               <Text>Swipe Right</Text>
             </TouchableOpacity>
           </View>
@@ -174,7 +168,7 @@ export default class DeckSwipeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#F5FCFF',
   },
   card: {
     flex: 1,
@@ -182,17 +176,17 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#E8E8E8',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   text: {
     textAlign: 'center',
     fontSize: 50,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   done: {
     textAlign: 'center',
     fontSize: 30,
     color: 'white',
-    backgroundColor: 'transparent'
-  }
+    backgroundColor: 'transparent',
+  },
 });

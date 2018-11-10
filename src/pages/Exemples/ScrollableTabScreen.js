@@ -24,14 +24,9 @@ export default class ScrollableTabScreen extends Component {
       <View style={styles.container}>
         <ScrollableTabView
           renderTabBar={() => <ScrollableTabView.ScrollableTabBar />}
-          collapsableBar={
-            <View style={{ height: 100, backgroundColor: 'red' }} />
-          }
+          collapsableBar={<View style={{ height: 100, backgroundColor: 'red' }} />}
           refreshControl={
-            <RefreshControl
-              ref={ref => (this._hw = ref)}
-              onRefresh={this._onRefresh}
-            />
+            <RefreshControl ref={ref => (this._hw = ref)} onRefresh={this._onRefresh} />
           }
         >
           <View tabLabel={'React'} style={{ height: 1000 }} />
@@ -49,7 +44,7 @@ export default class ScrollableTabScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#F5FCFF',
   },
   card: {
     flex: 1,
@@ -57,17 +52,17 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#E8E8E8',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   text: {
     textAlign: 'center',
     fontSize: 50,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   done: {
     textAlign: 'center',
     fontSize: 30,
     color: 'white',
-    backgroundColor: 'transparent'
-  }
+    backgroundColor: 'transparent',
+  },
 });

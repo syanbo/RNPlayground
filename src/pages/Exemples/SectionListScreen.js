@@ -5,18 +5,9 @@
  */
 
 import React, { PureComponent } from 'react';
-import {
-  StyleSheet,
-  View,
-  SectionList,
-  Text,
-  FlatList,
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, View, SectionList, Text, FlatList, TouchableOpacity } from 'react-native';
 
-import ScrollableTabView, {
-  DefaultTabBar
-} from 'react-native-scrollable-tab-view';
+import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 
 export default class SectionListScreen extends PureComponent {
   static propTypes = {};
@@ -43,9 +34,7 @@ export default class SectionListScreen extends PureComponent {
     return (
       <View style={styles.container}>
         <SectionList
-          renderItem={({ item, index, section }) => (
-            <Text key={index}>{item}</Text>
-          )}
+          renderItem={({ item, index, section }) => <Text key={index}>{item}</Text>}
           renderSectionHeader={this.renderSectionHeader}
           ListHeaderComponent={
             <TouchableOpacity
@@ -56,9 +45,7 @@ export default class SectionListScreen extends PureComponent {
               }}
             />
           }
-          ListFooterComponent={
-            <View style={{ height: 200, backgroundColor: '#000' }} />
-          }
+          ListFooterComponent={<View style={{ height: 200, backgroundColor: '#000' }} />}
           sections={[{ title: 'Title1', data: [] }]}
           keyExtractor={(item, index) => item + index}
         />
@@ -84,16 +71,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFF',
-    paddingTop: 40
+    paddingTop: 40,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10
+    margin: 10,
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5
-  }
+    marginBottom: 5,
+  },
 });

@@ -8,21 +8,21 @@ export default class RefreshControlAndroid extends Component {
   state = {
     text: '下拉刷新',
     rotate: new Animated.Value(0),
-    refreshing: false
+    refreshing: false,
   };
 
   _onRefresh = () => {
     let { onRefresh } = this.props;
     this.setState({
       refreshing: true,
-      text: '正在刷新'
+      text: '正在刷新',
     });
     onRefresh && onRefresh();
   };
   finishRefresh = params => {
     this.setState({
       refreshing: false,
-      text: '下拉刷新'
+      text: '下拉刷新',
     });
   };
   render() {

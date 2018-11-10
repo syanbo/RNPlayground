@@ -6,12 +6,8 @@
 
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {
-  createBottomTabNavigator,
-  createStackNavigator
-} from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { BottomTabBar } from '../components';
-
 import Exemples from './Exemples';
 import Home from './Home';
 import Car from './Car';
@@ -23,10 +19,10 @@ import SectionListScreen from './Exemples/SectionListScreen';
 
 const TabNav = createBottomTabNavigator(
   {
-    Exemples: { screen: Exemples },
     Home: { screen: Home },
+    Exemples: { screen: Exemples },
     Car: { screen: Car },
-    My: { screen: My }
+    My: { screen: My },
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -43,17 +39,17 @@ const TabNav = createBottomTabNavigator(
           iconName = 'ios-color-filter';
         }
         return <Ionicons name={iconName} size={25} color={tintColor} />;
-      }
+      },
     }),
     tabBarOptions: {
       activeTintColor: 'tomato',
-      inactiveTintColor: 'gray'
+      inactiveTintColor: 'gray',
     },
-    initialRouteName: 'Exemples',
+    initialRouteName: 'Home',
     tabBarComponent: BottomTabBar,
     tabBarPosition: 'bottom',
     animationEnabled: false,
-    swipeEnabled: false
+    swipeEnabled: false,
   }
 );
 
@@ -73,26 +69,26 @@ const configAppNavigator = initialRouteName => {
   return createStackNavigator(
     {
       Tab: {
-        screen: TabNav
+        screen: TabNav,
       },
       DeckSwipeScreen: {
-        screen: DeckSwipeScreen
+        screen: DeckSwipeScreen,
       },
       ScrollableTabScreen: {
-        screen: ScrollableTabScreen
+        screen: ScrollableTabScreen,
       },
       PopoverScreen: {
-        screen: PopoverScreen
+        screen: PopoverScreen,
       },
       SectionListScreen: {
-        screen: SectionListScreen
-      }
+        screen: SectionListScreen,
+      },
     },
     {
       initialRouteName: initialRouteName,
       navigationOptions: {
-        header: null
-      }
+        header: null,
+      },
     }
   );
 };

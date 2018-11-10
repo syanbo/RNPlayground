@@ -12,7 +12,7 @@ import { Theme } from '../../common';
 
 export default class index extends PureComponent {
   static navigationOptions = {
-    headerTitle: '车型库'
+    headerTitle: '车型库',
   };
   /**
    * 使用Async方便简单直接 这是趋势
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-    paddingTop: Theme.statusBarHeight
+    paddingTop: Theme.statusBarHeight,
   },
   image: {
     width: 100,
@@ -73,14 +73,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: Theme.hairlineWidth,
     borderColor: 'rgba(0,0,0,0.12)',
-    marginRight: 20
+    marginRight: 20,
   },
   list: {
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
   },
   item: {
     padding: 20,
     flexDirection: 'row',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });

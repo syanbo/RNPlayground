@@ -9,7 +9,7 @@ import { createIconSet } from 'react-native-vector-icons';
 const glyphMap = {
   play: 58932,
   error_image: 58939,
-  yes: 58938
+  yes: 58938,
 };
 
 const iconSet = createIconSet(glyphMap, 'IconFont', 'iconfont.ttf');
