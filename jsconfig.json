@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "jsx": "react-native",
+    "allowSyntheticDefaultImports": false,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

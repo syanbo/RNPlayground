@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RNPlayground</string>
+    <string moduleConfig="true" name="CodePushServerUrl">http://www.seebug.xyz:3000</string>
 </resources>

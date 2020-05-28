@@ -1,39 +1,70 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import CodePush from 'react-native-code-push';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import stores from './models/index';
+import HomeScreen from './screen/Home';
+import FeedScreen from './screen/Feed';
+import ProfileScreen from './screen/Profile';
+import DebugScreen from './screen/Debug';
 
-import configAppNavigator from './pages';
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-export default class App extends Component {
-  state = {
-    initApp: null,
-  };
+function MyTab() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeTintColor: '#e91e63',
+      }}>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+        }}
+      />
+      <Tab.Screen
+        name="Feed"
+        component={FeedScreen}
+        options={{
+          tabBarLabel: 'Feed',
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        initApp: 'Tab',
-      });
-    }, 100);
-  }
-
+class App extends React.PureComponent {
   render() {
-    const { initApp } = this.state;
-    if (initApp) {
-      const App = configAppNavigator(initApp);
-      return (
-        <Provider store={stores}>
-          <App />
-        </Provider>
-      );
-    }
-
-    return null;
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Main"
+            component={MyTab}
+            options={{
+              headerShown: false,
+              title: '首页',
+            }}
+          />
+          <Stack.Screen name="Debug" component={DebugScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
   }
 }
+
+export default CodePush({
+  checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
+  updateDialog: true,
+})(App);
