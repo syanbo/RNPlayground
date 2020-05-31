@@ -16,6 +16,12 @@ function HomeScreen({navigation}) {
         }}>
         <Text>跳转CodePush Debug 页面</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('ImagePicker');
+        }}>
+        <Text>图片选择 页面</Text>
+      </TouchableOpacity>
     </View>
   );
 }

@@ -57,5 +57,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription - 2</key>
+	<string>$(PRODUCT_NAME)需要使用定位</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) 需要使用您的麦克风来录制、发送语音</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) 需要使用您的相册来存取照片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) 需要使用您的相册来存取照片</string>
 </dict>
 </plist>

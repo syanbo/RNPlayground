@@ -8,6 +8,7 @@ import HomeScreen from './screen/Home';
 import FeedScreen from './screen/Feed';
 import ProfileScreen from './screen/Profile';
 import DebugScreen from './screen/Debug';
+import ImagePicker from './screen/ImagePicker';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,6 +59,7 @@ class App extends React.PureComponent {
             }}
           />
           <Stack.Screen name="Debug" component={DebugScreen} />
+          <Stack.Screen name="ImagePicker" component={ImagePicker} />
         </Stack.Navigator>
       </NavigationContainer>
     );

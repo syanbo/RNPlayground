@@ -22,7 +22,8 @@
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.9.0",
     "react-native-safe-area-context": "^1.0.2",
-    "react-native-screens": "^2.7.0"
+    "react-native-screens": "^2.7.0",
+    "react-native-syan-image-picker": "^0.4.9"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
