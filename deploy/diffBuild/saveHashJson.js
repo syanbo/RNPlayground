@@ -18,10 +18,12 @@ function saveHashJson() {
     const envLower = process.argv[4];
     const platform = process.argv[5];
 
+    console.log(
+      `参数 bundle路径：${bundlePath}, 分支名称：${appBranchName}, APP环境：${envLower}, 平台：${platform}`,
+    );
     if (!bundlePath || !appBranchName || !envLower || !platform) {
-      console.log(
-        '请检查参数 bundlePath(bundle路径) branchName(分支名称) envLower(APP环境) platform(平台)',
-      );
+      console.log('请检查参数');
+      process.exit(1);
       return;
     }
 
@@ -39,7 +41,7 @@ function saveHashJson() {
     try {
       console.log('删除远程分支 %s', branchName);
       // 删除远程分支
-      execSync(`git push origin --delete ${branchName}`, {
+      execSync(`cd ${fileDir} && git push origin --delete ${branchName}`, {
         cwd: fileDir,
       });
     } catch (e) {}

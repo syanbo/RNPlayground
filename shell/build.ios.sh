@@ -58,12 +58,10 @@ npx react-native bundle --reset-cache --entry-file index.js --bundle-output $PUS
 echo "------------------------ 开始生成 hash.json 文件 ------------------------"
 echo "分支名称为 ${BranchName}"
 
-node ./deploy/diffBuild/saveHashJson.js "${PUSH_DIR}" "${BranchName}" "${ENVLower}" ios
+node ./deploy/diffBuild/saveHashJson.js "${PUSH_DIR}" "${BranchName}" "${ENVUpper}" ios
 
 if [ "$?"x != "0"x ]; then
-    git clean -df
-    git checkout .
-    exit
+   exit
 fi
 
 echo -e "\n•••••••••••••••••••••••• iOS 执行完毕 ••••••••••••••••••••••••\n"

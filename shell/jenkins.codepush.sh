@@ -40,8 +40,6 @@ function startPush(){
 
   if [ "$?"x != "0"x ]; then
     echo "打包 RN Bundle 资源失败" "请处理错误后重试"
-    git clean -df
-    git checkout .
     exit
   fi
 
@@ -51,8 +49,6 @@ function startPush(){
 
   if [ "$?"x != "0"x ]; then
     echo "差分diff 失败" "请处理错误后重试"
-    git clean -df
-    git checkout .
     exit
   fi
 
@@ -70,12 +66,8 @@ function startPush(){
      echo "\n•••••••••••••••••••••••• 热更成功 ••••••••••••••••••••••••\n"
   else
      echo "\n•••••••••••••••••••••••• 热更失败 ••••••••••••••••••••••••\n"
+     exit
   fi
-
-  echo -e "还原变更"
-
-  git clean -df
-  git checkout .
 
   echo "\n•••••••••••••••••••••••• $1 执行完毕 ••••••••••••••••••••••••\n"
 }

@@ -1,6 +1,5 @@
 #!/bin/bash
 set -o errexit
-# 2020-5-13
 #   ••••• 热更新脚本注意事项 ••••••
 #   用途：CodePush热更
 #   sh ./shell/codepush.sh iOS 第一个参数代表执行哪个平台 不输入默认 双端

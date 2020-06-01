@@ -62,11 +62,9 @@ echo "------------------------ 开始生成 hash.json 文件 -------------------
 
 echo "git 分支名称为 ${BranchName}"
 
-node ./deploy/diffBuild/saveHashJson.js "${PUSH_DIR}" "${BranchName}" "${ENVLower}" android
+node ./deploy/diffBuild/saveHashJson.js "${PUSH_DIR}" "${BranchName}" "${ENVUpper}" android
 
 if [ "$?"x != "0"x ]; then
-    git clean -df
-    git checkout .
     exit
 fi
 
