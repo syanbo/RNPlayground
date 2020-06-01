@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-Platform="Android"
+Platform="iOS"
 GitCommitHash=$(git rev-parse --short HEAD)
 BranchName=$(git symbolic-ref --short -q HEAD)
 
@@ -9,13 +9,10 @@ BranchName=$(git symbolic-ref --short -q HEAD)
 function handleENVUpper() {
     case $1 in
       1) ENVUpper='Qa'
-         ENVNative='Debug'
       ;;
       2) ENVUpper='Staging'
-         ENVNative='ReleaseStaging'
       ;;
       3) ENVUpper='Production'
-         ENVNative='Release'
       ;;
       *) echo '操作中断：非法选择项。【来源】'
          exit
@@ -23,7 +20,7 @@ function handleENVUpper() {
     esac
 }
 
-echo -e "\n••••••••••••••••••••••• 欢迎使用 安卓打包 脚本 •••••••••••••••••••••••\n"
+echo -e "\n••••••••••••••••••••••• 欢迎使用 iOS打包 脚本 •••••••••••••••••••••••\n"
 
 echo "\n请选择打包环境： "
 echo "1. Qa"
@@ -55,14 +52,13 @@ fi
 mkdir $PUSH_DIR
 find $PUSH_DIR -name .DS_Store | xargs rm -rf
 
-echo "------------------------ 生成新 Android RN Bundle 资源 ------------------------"
-npx react-native bundle --reset-cache --entry-file index.js --bundle-output $PUSH_DIR/index.android.bundle --platform android --assets-dest $PUSH_DIR --dev false
+echo "------------------------ 生成新 iOS RN Bundle 资源 ------------------------"
+npx react-native bundle --reset-cache --entry-file index.js --bundle-output $PUSH_DIR/main.jsbundle --platform ios --assets-dest $PUSH_DIR/ --dev false
 
 echo "------------------------ 开始生成 hash.json 文件 ------------------------"
+echo "分支名称为 ${BranchName}"
 
-echo "git 分支名称为 ${BranchName}"
-
-node ./deploy/diffBuild/saveHashJson.js "${PUSH_DIR}" "${BranchName}" "${ENVLower}" android
+node ./deploy/diffBuild/saveHashJson.js "${PUSH_DIR}" "${BranchName}" "${ENVLower}" ios
 
 if [ "$?"x != "0"x ]; then
     git clean -df
@@ -70,6 +66,4 @@ if [ "$?"x != "0"x ]; then
     exit
 fi
 
-cd android && ./gradlew "assemble${ENVNative}"
-
-echo -e "\n•••••••••••••••••••••••• Android 执行完毕 ••••••••••••••••••••••••\n"
+echo -e "\n•••••••••••••••••••••••• iOS 执行完毕 ••••••••••••••••••••••••\n"

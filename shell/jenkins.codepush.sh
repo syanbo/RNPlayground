@@ -35,7 +35,7 @@ function startPush(){
   if [ $1 == "Android" ]; then
     npx react-native bundle --reset-cache --entry-file index.js --bundle-output $PUSH_DIR/index.android.bundle --platform android --assets-dest $PUSH_DIR --dev false
   else
-    npx react-native bundle  --reset-cache --entry-file index.js --bundle-output $PUSH_DIR/main.jsbundle --platform ios --assets-dest $PUSH_DIR --dev false;
+    npx react-native bundle --reset-cache --entry-file index.js --bundle-output $PUSH_DIR/main.jsbundle --platform ios --assets-dest $PUSH_DIR --dev false;
   fi
 
   if [ "$?"x != "0"x ]; then
@@ -67,9 +67,9 @@ function startPush(){
   npx code-push release $CodePushName $PUSH_DIR "$2" --d "$5" --des "$3\n** ${DateName} **" --m "$4";
 
   if [ "$?" == "0" ]; then # 取 code-push 命令执行结果。
-      echo "\n•••••••••••••••••••••••• 热更成功 ••••••••••••••••••••••••\n"
+     echo "\n•••••••••••••••••••••••• 热更成功 ••••••••••••••••••••••••\n"
   else
-      echo "\n•••••••••••••••••••••••• 热更失败 ••••••••••••••••••••••••\n"
+     echo "\n•••••••••••••••••••••••• 热更失败 ••••••••••••••••••••••••\n"
   fi
 
   echo -e "还原变更"
@@ -82,7 +82,7 @@ function startPush(){
 
 # 处理环境变量
 function handleENVUpper() {
-    case $2 in
+    case $1 in
       1) ENVUpper='Qa'
       ;;
       2) ENVUpper='Staging'
@@ -111,20 +111,20 @@ if [ -z "$7" ]; then
   RNBranchName=${BranchName}
 fi
 
-echo "[$1] [$2] [$3] [$4] [$5] [$6] [$7]"
+echo "------------------------  [$1] [$2] [$3] [$4] [$5] [$6] [$7]  ------------------------ "
 # 1=$Platform 2=$VERSION 3=$DESC 4=$manda 5=$ENVNum 6=$DiffBranchName 7=$RNBranchName
 if [ "$1" == "Android" ]; then
   echo "\n------------------------ 开始执行【Android】热更 ------------------------"
-  handleENVUpper "$1" $5
+  handleENVUpper $5
   startPush "$1" "$2" "$DESC" "$4" "${ENVUpper}" "android_${ENVUpper}_${DiffBranchName}" "${RNBranchName}"
 elif [ "$1" == "iOS" ]; then
   echo "\n------------------------ 开始执行【iOS】热更 ------------------------"
-  handleENVUpper "$1" $5
+  handleENVUpper $5
   startPush "$1" "$2" "$DESC" "$4" "${ENVUpper}" "ios_${ENVUpper}_${DiffBranchName}" "${RNBranchName}"
 else
   echo "\n------------------------ 开始执行【双端】热更 ------------------------"
-  handleENVUpper "Android" $5
+  handleENVUpper $5
   startPush "Android" "$2" "$DESC" "$4" "${ENVUpper}" "android_${ENVUpper}_${DiffBranchName}" "${RNBranchName}"
-  handleENVUpper "iOS" $5
+  handleENVUpper $5
   startPush "iOS" "$2" "$DESC" "$4" "${ENVUpper}" "ios_${ENVUpper}_${DiffBranchName}" "${RNBranchName}"
 fi

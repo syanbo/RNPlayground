@@ -8,7 +8,7 @@ set -o errexit
 #   第一个参数当前develop分支名称 develop_draw_somthing
 #   双端   sh ./shell/codepush.sh develop_draw_somthing
 #   单端  sh ./shell/codepush.sh iOS develop_draw_somthing
-#   会进行diff 需要依赖git项目rnbuild
+#   会进行diff 需要依赖git项目RNDiffBundle
 #   原生打包时执行 ./deploy/diffBuild/saveHashJson.js 上传当前版本的原始bundle 和 hash.json
 #   diff分支命名为 ios_test_develop_draw_somthing ios=平台 test=环境 develop_draw_somthing=当前rn分支名称
 
@@ -25,7 +25,7 @@ if [ -z "$VERSION" ]; then
     exit
 fi
 
-echo "\n热更新将在输入的版本：${VERSION} 执行，请输入更新描述："
+echo "\n热更新将在输入的版本：${VERSION} 执行，请输入更新描述：（默认最后一个commit message）"
 read DESC
 if [ -z "$DESC" ]; then
   DESC=${CommitMessage}
