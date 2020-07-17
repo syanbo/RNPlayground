@@ -16,7 +16,7 @@
     "@react-navigation/bottom-tabs": "^5.5.0",
     "@react-navigation/native": "^5.4.3",
     "@react-navigation/stack": "^5.3.9",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-code-push": "https://github.com/syanbo/react-native-code-push/archive/v6.2.0-beta.1.tar.gz",
