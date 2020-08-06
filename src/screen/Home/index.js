@@ -11,16 +11,25 @@ function HomeScreen({navigation}) {
     <View style={styles.container}>
       <Text>Home Screen</Text>
       <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           navigation.navigate('Debug');
         }}>
         <Text>跳转CodePush Debug 页面</Text>
       </TouchableOpacity>
       <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           navigation.navigate('ImagePicker');
         }}>
         <Text>图片选择 页面</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate('React');
+        }}>
+        <Text>React 测试</Text>
       </TouchableOpacity>
     </View>
   );
@@ -32,6 +41,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFF',
+  },
+  button: {
+    paddingVertical: 20,
   },
 });
 

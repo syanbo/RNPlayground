@@ -9,6 +9,7 @@ import FeedScreen from './screen/Feed';
 import ProfileScreen from './screen/Profile';
 import DebugScreen from './screen/Debug';
 import ImagePicker from './screen/ImagePicker';
+import ReactTest from './screen/React';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -60,6 +61,7 @@ class App extends React.PureComponent {
           />
           <Stack.Screen name="Debug" component={DebugScreen} />
           <Stack.Screen name="ImagePicker" component={ImagePicker} />
+          <Stack.Screen name="React" component={ReactTest} />
         </Stack.Navigator>
       </NavigationContainer>
     );
