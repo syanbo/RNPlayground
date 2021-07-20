@@ -18,7 +18,7 @@
     "@react-navigation/stack": "^5.3.9",
     "lodash": "^4.17.15",
     "react": "16.11.0",
-    "react-native": "0.62.2",
+    "react-native": "0.62.3",
     "react-native-code-push": "https://github.com/syanbo/react-native-code-push/archive/v6.2.0-beta.1.tar.gz",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.9.0",
